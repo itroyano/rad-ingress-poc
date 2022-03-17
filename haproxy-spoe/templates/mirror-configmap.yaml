@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mirror
+  namespace: {{ .Values.namespace }}
+data:
+  mirror.cfg: |-
+{{ .Files.Get "files/mirror.cfg" | indent 4 }}
+
+
