@@ -3,11 +3,19 @@ kind: Deployment
 metadata:
   name: {{ .Values.routerName }}
   namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.routerName }}
 spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.routerName }}
   minReadySeconds: 30
   progressDeadlineSeconds: 600
   replicas: {{ .Values.replicaCount }}
   template:
+    metadata:
+      labels:
+        app: {{ .Values.routerName }}
     spec:
       containers:
       - env:

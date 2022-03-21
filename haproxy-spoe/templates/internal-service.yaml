@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.alpha.openshift.io/serving-cert-secret-name: router-metrics-certs-spoe-router
+    service.alpha.openshift.io/serving-cert-signed-by: openshift-service-serving-signer@1627377018
+    service.beta.openshift.io/serving-cert-signed-by: openshift-service-serving-signer@1627377018
+  labels:
+    app: {{ .Values.routerName }}
+    router: {{ .Values.routerName }}
+  name: internal-{{ .Values.routerName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: http
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: https
+  - name: metrics
+    port: 1936
+    protocol: TCP
+    targetPort: 1936
+  selector:
+    app: {{ .Values.routerName }}
+  sessionAffinity: None
+  type: ClusterIP
