@@ -27,7 +27,7 @@ spec:
 ## Deploy the helm chart
 
 ```sh
-helm upgrade haproxy-spoe
+helm upgrade -i haproxy-spoe ./haproxy-spoe
 ```
 
 This will create:

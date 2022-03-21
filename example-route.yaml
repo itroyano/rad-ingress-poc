@@ -1,0 +1,19 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: business
+    k8s.io/route-type: kwaf-secured
+  name: business
+spec:
+  host: businessapp.example.com
+  port:
+    targetPort: https
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: reencrypt
+  to:
+    kind: Service
+    name: businessapp
+    weight: 100
+  wildcardPolicy: None

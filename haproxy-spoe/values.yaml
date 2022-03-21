@@ -6,3 +6,4 @@ replicaCount: 2
 
 namespace: openshift-ingress
 routerName: router-rad
+image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:038452cc237d09fbbea348a454007760fb2d04e1e2439e931c505665c2c98071
